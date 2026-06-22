@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qahwa House | Votre café cosy à Alger | مقهى بيت القهوة</title>
+    <style>
+        :root {
+            --primary: #3E2723;
+            --accent: #D4AF37;
+            --bg: #FFF8E1;
+            --card-bg: #ffffff;
+            --text: #212121;
+            --white: #ffffff;
+            --toggle-bg: #3E2723;
+            --toggle-text: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --primary: #D4AF37;
+            --accent: #FFF8E1;
+            --bg: #1A0F0C;
+            --card-bg: #2D1B18;
+            --text: #F5F5F5;
+            --toggle-bg: #FFF8E1;
+            --toggle-text: #1A0F0C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .ar {
+            direction: rtl;
+            text-align: right;
+            font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        /* Header & Nav */
+        header {
+            background-color: #3E2723; /* Kept solid for branding consistency */
+            color: var(--white);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #D4AF37;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            color: #D4AF37;
+        }
+
+        /* Theme Toggle Button */
+        .theme-btn {
+            background-color: var(--toggle-bg);
+            color: var(--toggle-text);
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=1200') no-repeat center center/cover;
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 1rem;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            font-weight: normal;
+            margin-bottom: 1.5rem;
+            color: #D4AF37;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .btn {
+            background-color: #D4AF37;
+            color: #3E2723;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--white);
+            color: #3E2723;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title-block {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title-block h2 {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .section-title-block h3 {
+            font-size: 1.6rem;
+            font-weight: normal;
+            color: var(--text);
+            margin-top: 0.3rem;
+        }
+
+        /* Menu Section */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary);
+        }
+
+        .menu-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        /* Info Section */
+        .info-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .info-box {
+            flex: 1;
+            min-width: 280px;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        footer {
+            background-color: #3E2723;
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 1rem; text-align: center; padding: 1rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero h2 { font-size: 1.6rem; }
+            .info-container { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">☕ Qahwa House / بيت القهوة</div>
+        <div class="nav-right">
+            <nav>
+                <a href="#menu">Menu</a> | 
+                <a href="#contact">Contact</a>
+            </nav>
+            <button class="theme-btn" id="theme-toggle">🌙 Mode</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Your daily cup of calm</h1>
+        <h2 class="ar">فنجانك اليومي من الهدوء</h2>
+        <p>Découvrez l'authenticité et la chaleur du meilleur café de quartier à Alger.<br>
+        <span class="ar">اكتشف أصالة ودفء أفضل مقهى محلي في قلب الجزائر العاصمة.</span></p>
+        <a href="#contact" class="btn">Où nous trouver / موقعنا</a>
+    </section>
+
+    <section id="about" style="text-align: center; max-width: 800px;">
+        <div class="section-title-block">
+            <h2>Notre Histoire / قصة مقهانا</h2>
+        </div>
+        <p>Niché au cœur d'Alger, Qahwa House vous accueille dans un cadre chaleureux mêlant tradition et modernité. Que ce soit pour un expresso matinal ou un thé traditionnel, notre espace est conçu pour vous offrir une pause bien méritée.</p>
+        <p class="ar" style="margin-top: 1rem;">يقع مقهى بيت القهوة في قلب الجزائر العاصمة، ويرحب بكم في أجواء دافئة تمزج بين التقليد والحداثة. سواء كان ذلك لتناول قهوة الصباح أو شاي تقليدي، فقد تم تصميم مساحتنا لتمنحكم راحة تستحقونها.</p>
+    </section>
+
+    <section id="menu">
+        <div class="section-title-block">
+            <h2>Les Incontournables / القائمة الرئيسية</h2>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="menu-card-header"><h3>Espresso</h3><h3 class="ar">إكسبريسو</h3></div>
+                <p>Intense et riche en arômes pour bien démarrer. / مركز وغني بالنكهة لبداية يوم ممتازة.</p>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header"><h3>Thé à la Menthe</h3><h3 class="ar">شاي بالنعناع</h3></div>
+                <p>Traditionnel, infusé avec de la menthe fraîche. / شاي تقليدي عريق مُعد بالنعناع الطازج.</p>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-header"><h3>Croissant</h3><h3 class="ar">كرواسون</h3></div>
+                <p>Pur beurre, croustillant et doré à souhait. / مقرمش، غني بالزبدة ومحمر بشكل مثالي.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="gallery-grid">
+            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=500" alt="Café">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=500" alt="Coffee">
+            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=500" alt="Cup">
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="info-container">
+            <div class="info-box">
+                <h3>Horaires / أوقات العمل</h3>
+                <p>Lundi - Samedi : 07:00 - 22:00</p>
+                <p class="ar">الإثنين - السبت: 07:00 - 22:00</p>
+            </div>
+            <div class="info-box">
+                <h3>Contact / الاتصال</h3>
+                <p>📍 12 Rue Didouche Mourad, Alger Centre</p>
+                <p>📞 +213 (0) 555 12 34 56</p>
+                <br>
+                <a href="https://wa.me/213555123456" class="btn" target="_blank" style="display:inline-block; font-size:0.9rem;">WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Qahwa House. Fait avec passion à Alger.</p>
+    </footer>
+
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            toggleBtn.textContent = newTheme === 'dark' ? '☀️ Light' : '🌙 Dark';
+        });
+    </script>
+</body>
+</html>
