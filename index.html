@@ -14,6 +14,7 @@
             --white: #ffffff;
             --toggle-bg: #3E2723;
             --toggle-text: #ffffff;
+            --border-color: #E0D7BC;
         }
 
         [data-theme="dark"] {
@@ -24,6 +25,7 @@
             --text: #F5F5F5;
             --toggle-bg: #FFF8E1;
             --toggle-text: #1A0F0C;
+            --border-color: #4A322E;
         }
 
         * {
@@ -31,7 +33,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
 
         body {
@@ -48,7 +50,7 @@
 
         /* Header & Nav */
         header {
-            background-color: #3E2723; /* Kept solid for branding consistency */
+            background-color: #3E2723;
             color: var(--white);
             padding: 1rem 2rem;
             position: fixed;
@@ -83,7 +85,6 @@
             color: #D4AF37;
         }
 
-        /* Theme Toggle Button */
         .theme-btn {
             background-color: var(--toggle-bg);
             color: var(--toggle-text);
@@ -98,7 +99,7 @@
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=1200') no-repeat center center/cover;
-            height: 85vh;
+            height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -109,23 +110,9 @@
             margin-top: 60px;
         }
 
-        .hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero h2 {
-            font-size: 2.2rem;
-            font-weight: normal;
-            margin-bottom: 1.5rem;
-            color: #D4AF37;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
-        }
+        .hero h1 { font-size: 2.8rem; margin-bottom: 0.5rem; }
+        .hero h2 { font-size: 2.2rem; font-weight: normal; margin-bottom: 1.5rem; color: #D4AF37; }
+        .hero p { font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; }
 
         .btn {
             background-color: #D4AF37;
@@ -138,10 +125,7 @@
             text-decoration: none;
         }
 
-        .btn:hover {
-            background-color: var(--white);
-            color: #3E2723;
-        }
+        .btn:hover { background-color: var(--white); color: #3E2723; }
 
         /* Sections */
         section {
@@ -153,86 +137,76 @@
         .section-title-block {
             text-align: center;
             margin-bottom: 3rem;
+            border-bottom: 2px dashed var(--border-color);
+            padding-bottom: 2rem;
         }
 
-        .section-title-block h2 {
-            font-size: 2rem;
-            color: var(--primary);
-        }
+        .section-title-block h2 { font-size: 2.5rem; color: var(--primary); }
+        .section-title-block h3 { font-size: 2rem; font-weight: normal; color: var(--text); margin-top: 0.5rem; }
 
-        .section-title-block h3 {
-            font-size: 1.6rem;
-            font-weight: normal;
-            color: var(--text);
-            margin-top: 0.3rem;
-        }
-
-        /* Menu Section */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .menu-card {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--primary);
-        }
-
-        .menu-card-header {
+        /* Menu Specific Styles */
+        .menu-type-title {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            margin: 2.5rem 0 1.5rem 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
         }
 
-        /* Gallery */
-        .gallery-grid {
+        .menu-type-title h3 { font-size: 1.4rem; }
+
+        .menu-subsection-title {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin: 1.5rem 0 1rem 0;
+            padding-left: 0.5rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .menu-item {
+            background: var(--card-bg);
+            padding: 1.2rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 3px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-item-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             gap: 1rem;
         }
 
-        .gallery-grid img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
+        .menu-item-title { font-weight: bold; font-size: 1.05rem; }
+        .menu-item-price { font-weight: bold; color: var(--accent); white-space: nowrap; }
+        .menu-item-desc { font-size: 0.85rem; opacity: 0.75; margin-top: 0.4rem; line-height: 1.4; }
 
         /* Info Section */
-        .info-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
+        .info-container { display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 3rem; }
+        .info-box { flex: 1; min-width: 280px; background: var(--card-bg); padding: 2rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 
-        .info-box {
-            flex: 1;
-            min-width: 280px;
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        footer {
-            background-color: #3E2723;
-            color: var(--white);
-            text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
-        }
+        footer { background-color: #3E2723; color: var(--white); text-align: center; padding: 2rem; margin-top: 2rem; }
 
         @media (max-width: 768px) {
             header { flex-direction: column; gap: 1rem; text-align: center; padding: 1rem; }
             .hero h1 { font-size: 2rem; }
             .hero h2 { font-size: 1.6rem; }
-            .info-container { flex-direction: column; }
+            .menu-type-title { flex-direction: column; gap: 0.3rem; text-align: center; }
+            .menu-item-top { flex-direction: column; gap: 0.2rem; }
+            .menu-item-price { align-self: flex-end; }
         }
     </style>
 </head>
@@ -242,8 +216,8 @@
         <div class="logo">☕ Qahwa House / بيت القهوة</div>
         <div class="nav-right">
             <nav>
-                <a href="#menu">Menu</a> | 
-                <a href="#contact">Contact</a>
+                <a href="#menu">Menu / القائمة</a> | 
+                <a href="#contact">Contact / الاتصال</a>
             </nav>
             <button class="theme-btn" id="theme-toggle">🌙 Mode</button>
         </div>
@@ -252,44 +226,413 @@
     <section class="hero">
         <h1>Your daily cup of calm</h1>
         <h2 class="ar">فنجانك اليومي من الهدوء</h2>
-        <p>Découvrez l'authenticité et la chaleur du meilleur café de quartier à Alger.<br>
-        <span class="ar">اكتشف أصالة ودفء أفضل مقهى محلي في قلب الجزائر العاصمة.</span></p>
-        <a href="#contact" class="btn">Où nous trouver / موقعنا</a>
-    </section>
-
-    <section id="about" style="text-align: center; max-width: 800px;">
-        <div class="section-title-block">
-            <h2>Notre Histoire / قصة مقهانا</h2>
-        </div>
-        <p>Niché au cœur d'Alger, Qahwa House vous accueille dans un cadre chaleureux mêlant tradition et modernité. Que ce soit pour un expresso matinal ou un thé traditionnel, notre espace est conçu pour vous offrir une pause bien méritée.</p>
-        <p class="ar" style="margin-top: 1rem;">يقع مقهى بيت القهوة في قلب الجزائر العاصمة، ويرحب بكم في أجواء دافئة تمزج بين التقليد والحداثة. سواء كان ذلك لتناول قهوة الصباح أو شاي تقليدي، فقد تم تصميم مساحتنا لتمنحكم راحة تستحقونها.</p>
+        <p>Découvrez notre nouvelle carte étendue de boissons et gourmandises à Alger.<br>
+        <span class="ar">اكتشف قائمتنا الجديدة الغنية بالمشروبات والمأكولات الشهية في الجزائر.</span></p>
+        <a href="#menu" class="btn">Voir la carte / تصفح القائمة</a>
     </section>
 
     <section id="menu">
         <div class="section-title-block">
-            <h2>Les Incontournables / القائمة الرئيسية</h2>
+            <h2>Notre Carte Exclusive</h2>
+            <h3 class="ar">قائمة أسعارنا الحصرية</h3>
         </div>
-        <div class="menu-grid">
-            <div class="menu-card">
-                <div class="menu-card-header"><h3>Espresso</h3><h3 class="ar">إكسبريسو</h3></div>
-                <p>Intense et riche en arômes pour bien démarrer. / مركز وغني بالنكهة لبداية يوم ممتازة.</p>
-            </div>
-            <div class="menu-card">
-                <div class="menu-card-header"><h3>Thé à la Menthe</h3><h3 class="ar">شاي بالنعناع</h3></div>
-                <p>Traditionnel, infusé avec de la menthe fraîche. / شاي تقليدي عريق مُعد بالنعناع الطازج.</p>
-            </div>
-            <div class="menu-card">
-                <div class="menu-card-header"><h3>Croissant</h3><h3 class="ar">كرواسون</h3></div>
-                <p>Pur beurre, croustillant et doré à souhait. / مقرمش، غني بالزبدة ومحمر بشكل مثالي.</p>
-            </div>
-        </div>
-    </section>
 
-    <section id="gallery">
-        <div class="gallery-grid">
-            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=500" alt="Café">
-            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=500" alt="Coffee">
-            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=500" alt="Cup">
+        <!-- ==================== TYPE 1: BOISSONS ==================== -->
+        <div class="menu-type-title">
+            <h3>I. LES BOISSONS</h3>
+            <h3 class="ar">1. المشروبات</h3>
+        </div>
+
+        <div class="menu-subsection-title">☕ Boissons Chaudes / المشروبات الساخنة</div>
+        <div class="menu-grid">
+            <!-- 1 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Espresso <span class="ar">إكسبريسو</span></span>
+                    <span class="menu-item-price">120 DZD</span>
+                </div>
+                <p class="menu-item-desc">Café serré riche en arôme. / قهوة مركزة غنية بالنكهة.</p>
+            </div>
+            <!-- 2 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Double Espresso <span class="ar">إكسبريسو مضاعف</span></span>
+                    <span class="menu-item-price">200 DZD</span>
+                </div>
+                <p class="menu-item-desc">Deux doses d'espresso intense. / جرعة مضاعفة من القوة.</p>
+            </div>
+            <!-- 3 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Café Allongé <span class="ar">أمريكانو / قهوة مخففة</span></span>
+                    <span class="menu-item-price">140 DZD</span>
+                </div>
+                <p class="menu-item-desc">Espresso adouci à l'eau chaude. / قهوة إكسبريسو مخففة بالماء الساخن.</p>
+            </div>
+            <!-- 4 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Café Crème Classique <span class="ar">بريس بلقص / قهوة حليب</span></span>
+                    <span class="menu-item-price">150 DZD</span>
+                </div>
+                <p class="menu-item-desc">Le traditionnel café au lait algérien. / قهوة بالحليب على الطريقة التقليدية.</p>
+            </div>
+            <!-- 5 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Cappuccino <span class="ar">كابوتشينو</span></span>
+                    <span class="menu-item-price">250 DZD</span>
+                </div>
+                <p class="menu-item-desc">Espresso, lait chaud et mousse onctueuse. / قهوة مع حليب ساخن ورغوة كثيفة.</p>
+            </div>
+            <!-- 6 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Café Latte <span class="ar">لاتيه</span></span>
+                    <span class="menu-item-price">260 DZD</span>
+                </div>
+                <p class="menu-item-desc">Doux mélange d'espresso et beaucoup de lait chaud. / مزيج خفيف من القهوة والحليب الساخن.</p>
+            </div>
+            <!-- 7 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Latte Macchiato <span class="ar">لاتيه ماكياتو</span></span>
+                    <span class="menu-item-price">280 DZD</span>
+                </div>
+                <p class="menu-item-desc">Lait tacheté d'une dose d'espresso de choix. / حليب مكثف مغطى بجرعة إكسبريسو فاخرة.</p>
+            </div>
+            <!-- 8 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Café Moka <span class="ar">موكا بالفرنسية</span></span>
+                    <span class="menu-item-price">320 DZD</span>
+                </div>
+                <p class="menu-item-desc">Mariage d'espresso, chocolat et lait. / مزيج رائع بين القهوة، الشوكولاتة والحليب.</p>
+            </div>
+            <!-- 9 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Flat White <span class="ar">فلات وايت</span></span>
+                    <span class="menu-item-price">300 DZD</span>
+                </div>
+                <p class="menu-item-desc">Double espresso avec une fine couche de mousse. / جرعة مضاعفة مع طبقة رقيقة من الحليب ناعم الملمس.</p>
+            </div>
+            <!-- 10 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Café Turc / Direct <span class="ar">قهوة زازوة / تركية</span></span>
+                    <span class="menu-item-price">160 DZD</span>
+                </div>
+                <p class="menu-item-desc">Préparé traditionnellement sur le sable chaud. / مطهية بعناية على الرمل الساخن.</p>
+            </div>
+            <!-- 11 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Chocolat Chaud Maison <span class="ar">شوكولاتة ساخنة</span></span>
+                    <span class="menu-item-price">280 DZD</span>
+                </div>
+                <p class="menu-item-desc">Chocolat fondu crémeux et onctueux. / شوكولاتة ذائبة غنية ودافئة.</p>
+            </div>
+            <!-- 12 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Thé à la Menthe Traditionnel <span class="ar">شاي بالنعناع منعش</span></span>
+                    <span class="menu-item-price">100 DZD</span>
+                </div>
+                <p class="menu-item-desc">Infusé avec de la menthe fraîche d'Algérie. / شاي أصيل محضر بأوراق النعناع الطازجة.</p>
+            </div>
+            <!-- 13 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Thé Vert Impérial <span class="ar">شاي أخضر ملكي</span></span>
+                    <span class="menu-item-price">130 DZD</span>
+                </div>
+                <p class="menu-item-desc">Thé pur et bienfaisant. / شاي نقي ممتاز ومريح للأعصاب.</p>
+            </div>
+            <!-- 14 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Infusion Verveine / Camomille <span class="ar">بابونج / لويزة</span></span>
+                    <span class="menu-item-price">140 DZD</span>
+                </div>
+                <p class="menu-item-desc">Idéal pour une fin de journée apaisante. / مشروب الأعشاب الساخن والمثالي للاسترخاء.</p>
+            </div>
+            <!-- 15 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Matcha Latte <span class="ar">ماتشا لاتيه ساخن</span></span>
+                    <span class="menu-item-price">380 DZD</span>
+                </div>
+                <p class="menu-item-desc">Thé vert japonais moulu au lait. / الشاي الأخضر الياباني الفاخر مع الحليب الساخن.</p>
+            </div>
+        </div>
+
+        <div class="menu-subsection-title">🍹 Boissons Froides & Jus / المشروبات الباردة والعصائر</div>
+        <div class="menu-grid">
+            <!-- 16 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Iced Americano <span class="ar">أمريكانو مثلج</span></span>
+                    <span class="menu-item-price">180 DZD</span>
+                </div>
+                <p class="menu-item-desc">Espresso rafraîchissant sur glace. / إسبريسو منعش مع قطع الثلج.</p>
+            </div>
+            <!-- 17 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Iced Latte <span class="ar">لاتيه مثلج</span></span>
+                    <span class="menu-item-price">280 DZD</span>
+                </div>
+                <p class="menu-item-desc">Lait frais, espresso doux et glaçons. / حليب بارد مع القهوة المركزة والثلج.</p>
+            </div>
+            <!-- 18 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Iced Caramel Macchiato <span class="ar">كراميل ماكياتو مثلج</span></span>
+                    <span class="menu-item-price">340 DZD</span>
+                </div>
+                <p class="menu-item-desc">Avec une touche gourmande de caramel. / مزيج اللاتيه المثلج مع صوص الكراميل اللذيذ.</p>
+            </div>
+            <!-- 19 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Frappuccino Chocolat <span class="ar">فرابوتشينو شوكولاتة</span></span>
+                    <span class="menu-item-price">360 DZD</span>
+                </div>
+                <p class="menu-item-desc">Boisson glacée mixée surmontée de crème chantilly. / قهوة باردة مخفوقة بالكامل ومغطاة بالكريمة غنية.</p>
+            </div>
+            <!-- 20 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Affogato al Caffè <span class="ar">آفوغاتو الإيطالي</span></span>
+                    <span class="menu-item-price">320 DZD</span>
+                </div>
+                <p class="menu-item-desc">Boule de glace vanille noyée dans un espresso. / كرة مثلجات فانيليا مغطاة بقهوة ساخنة.</p>
+            </div>
+            <!-- 21 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Jus d'Orange Pressé <span class="ar">عصير برتقال طازج</span></span>
+                    <span class="menu-item-price">250 DZD</span>
+                </div>
+                <p class="menu-item-desc">Pressé à la minute, 100% naturel. / طبيعي ومحضر فوراً عند الطلب.</p>
+            </div>
+            <!-- 22 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Citronnade Maison Menthe <span class="ar">ليموناد بالنعناع</span></span>
+                    <span class="menu-item-price">220 DZD</span>
+                </div>
+                <p class="menu-item-desc">Citron frais pressé et menthe pilée. / عصير الليمون المنعش مع أوراق النعناع.</p>
+            </div>
+            <!-- 23 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Smoothie Fraise-Banane <span class="ar">سموذي فراولة وموز</span></span>
+                    <span class="menu-item-price">350 DZD</span>
+                </div>
+                <p class="menu-item-desc">Fruits frais mixés sans sucre ajouté. / فواكه طازجة ممزوجة بكل عفوية ونقاء.</p>
+            </div>
+            <!-- 24 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Smoothie Mangue Passion <span class="ar">سموذي المانجو الاستوائية</span></span>
+                    <span class="menu-item-price">380 DZD</span>
+                </div>
+                <p class="menu-item-desc">Un vent de fraîcheur exotique. / مزيج المانجو المنعش.</p>
+            </div>
+            <!-- 25 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Milkshake Vanille Bourbon <span class="ar">ميلك شيك فانيلا</span></span>
+                    <span class="menu-item-price">330 DZD</span>
+                </div>
+                <p class="menu-item-desc">Glace vanille de qualité et lait frais. / حليب بارد مخفوق مع آيس كريم الفانيلا الفاخرة.</p>
+            </div>
+            <!-- 26 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Milkshake Oréo Spécial <span class="ar">ميلك شيك أوريو</span></span>
+                    <span class="menu-item-price">360 DZD</span>
+                </div>
+                <p class="menu-item-desc">Aux éclats de biscuits Oréo croquants. / لعشاق البسكويت المقرمش مع الحليب الكثيف.</p>
+            </div>
+            <!-- 27 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Mojito Classique / Fraise <span class="ar">موهيتو بارد ومنعش</span></span>
+                    <span class="menu-item-price">300 DZD</span>
+                </div>
+                <p class="menu-item-desc">Eau gazeuse, citron vert, menthe et sirop. / مياه غازية بنكهة الليمون والنعناع والثلج البارد.</p>
+            </div>
+            <!-- 28 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Eau Minérale <span class="ar">ماء معدني طبيعي</span></span>
+                    <span class="menu-item-price">60 DZD</span>
+                </div>
+                <p class="menu-item-desc">Bouteille locale fraîche 50cl. / زجاجة مياه محلية باردة ونقية.</p>
+            </div>
+            <!-- 29 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Eau Gazéifiée <span class="ar">ماء غازي فوار</span></span>
+                    <span class="menu-item-price">120 DZD</span>
+                </div>
+                <p class="menu-item-desc">Eau pétillante rafraîchissante. / مياه فوارة منعشة للهضم.</p>
+            </div>
+            <!-- 30 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Sodas Canette <span class="ar">مشروبات غازية متنوعة</span></span>
+                    <span class="menu-item-price">100 DZD</span>
+                </div>
+                <p class="menu-item-desc">Coca, Fanta, Selecto au choix. / كوكا، فانتا أو سيلكتو حسب اختيارك الكلاسيكي.</p>
+            </div>
+        </div>
+
+        <!-- ==================== TYPE 2: LA NOURRITURE ==================== -->
+        <div class="menu-type-title">
+            <h3>II. LA NOURRITURE</h3>
+            <h3 class="ar">2. المأكولات</h3>
+        </div>
+
+        <div class="menu-subsection-title">🥐 Viennoiseries & Pâtisseries / المخبوزات والحلويات</div>
+        <div class="menu-grid">
+            <!-- 31 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Croissant Pur Beurre <span class="ar">كرواسون بالزبدة</span></span>
+                    <span class="menu-item-price">80 DZD</span>
+                </div>
+                <p class="menu-item-desc">Feuilletage croustillant fait maison. / عجين مورق مقرمش ومعد بحرفية يومياً.</p>
+            </div>
+            <!-- 32 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Pain au Chocolat / Petit Pain <span class="ar">بتي بان بالشوكولاتة</span></span>
+                    <span class="menu-item-price">90 DZD</span>
+                </div>
+                <p class="menu-item-desc">Gourmandise fondante du matin. / مخبوزات طازجة محشوة بقطع الشوكولاتة الذائبة.</p>
+            </div>
+            <!-- 33 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Pain aux Raisins <span class="ar">قلب اللوز بالمكسرات</span></span>
+                    <span class="menu-item-price">110 DZD</span>
+                </div>
+                <p class="menu-item-desc">À la crème pâtissière et raisins secs. / عجين حلزوني غني بالكريمة والزبيب الجاف.</p>
+            </div>
+            <!-- 34 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Mille-feuille Traditionnel <span class="ar">ميل فوي جزائري أصيل</span></span>
+                    <span class="menu-item-price">120 DZD</span>
+                </div>
+                <p class="menu-item-desc">Le grand classique indémodable. / طبقات الفوندان المقرمشة الغنية بالكاسترد الشهي.</p>
+            </div>
+            <!-- 35 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Tarte au Citron Meringuée <span class="ar">تارت الليمون بالمورانغ</span></span>
+                    <span class="menu-item-price">260 DZD</span>
+                </div>
+                <p class="menu-item-desc">Crème acidulée et meringue fondante. / كريمة ليمون حامضة متوازنة مع مورانغ هادئ ولطيف.</p>
+            </div>
+            <!-- 36 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Cheesecake Speculoos <span class="ar">تشيز كيك لوتس سبيكولوس</span></span>
+                    <span class="menu-item-price">380 DZD</span>
+                </div>
+                <p class="menu-item-desc">Base croustillante et crème veloutée. / طبقة بسكويت مقرمشة مع كريمة الجبن الفاخرة.</p>
+            </div>
+            <!-- 37 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Fondant au Chocolat Noir <span class="ar">فوندان الشوكولاتة الداكنة</span></span>
+                    <span class="menu-item-price">280 DZD</span>
+                </div>
+                <p class="menu-item-desc">Servi tiède avec son cœur coulant. / يقدم دافئاً مع قلب شوكولاتة سائل ومميز.</p>
+            </div>
+            <!-- 38 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Tiramisu Classique <span class="ar">تيراميسو القهوة الإيطالي</span></span>
+                    <span class="menu-item-price">320 DZD</span>
+                </div>
+                <p class="menu-item-desc">Biscuit imbibé d'espresso et mascarpone. / حلى الماسكاربوني الفاخر المشرب بقهوتنا العريقة.</p>
+            </div>
+            <!-- 39 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Brownie Amandes & Noix <span class="ar">براوني مكسرات وجوز</span></span>
+                    <span class="menu-item-price">200 DZD</span>
+                </div>
+                <p class="menu-item-desc">Riche en chocolat et super fondant. / قطعة غنية ومكثفة بالشوكولاتة والمكسرات المحمصة.</p>
+            </div>
+            <!-- 40 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Cookie Pépites de Chocolat <span class="ar">كوكيز قطع الشوكولاتة</span></span>
+                    <span class="menu-item-price">140 DZD</span>
+                </div>
+                <p class="menu-item-desc">Moelleux à l'intérieur, croquant autour. / كوكيز هش من الداخل، مقرمش من الأطراف.</p>
+            </div>
+            <!-- 41 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Muffin Tout Chocolat <span class="ar">مفن الشوكولاتة المزدوجة</span></span>
+                    <span class="menu-item-price">180 DZD</span>
+                </div>
+                <p class="menu-item-desc">Cœur fondant et pépites XL. / كعكة مفن ناعمة ومحشوة بقطع شوكولاتة كبيرة.</p>
+            </div>
+            <!-- 42 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Crêpe Nutella Banane <span class="ar">كريب نوتيلا بالموز</span></span>
+                    <span class="menu-item-price">280 DZD</span>
+                </div>
+                <p class="menu-item-desc">Faite à la minute, bien généreuse. / فطيرة كريب رقيقة ومغطاة بصوص الشوكولاتة والموز.</p>
+            </div>
+        </div>
+
+        <div class="menu-subsection-title">🥪 Snacks & Salés / المأكولات الخفيفة والمملحات</div>
+        <div class="menu-grid">
+            <!-- 43 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Mhadjeb Traditionnels <span class="ar">محاجب جزائرية ساخنة</span></span>
+                    <span class="menu-item-price">60 DZD / pc</span>
+                </div>
+                <p class="menu-item-desc">Farcies à la tomate et oignons piquants. / عجين تقليدي محشو بالبصل والطماطم الحارة.</p>
+            </div>
+            <!-- 44 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Croissant Salé Fromage <span class="ar">كرواسون مالح بالجبن</span></span>
+                    <span class="menu-item-price">160 DZD</span>
+                </div>
+                <p class="menu-item-desc">Fourré au fromage crème fondant. / مخبوز كرواسون محشو ومحمص بجبن الكريمة الغني.</p>
+            </div>
+            <!-- 45 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Quiche Poulet Champignons <span class="ar">كيش الدجاج والفطر</span></span>
+                    <span class="menu-item-price">220 DZD</span>
+                </div>
+                <p class="menu-item-desc">Pâte brisée, crème et blanc de poulet. / فطيرة الكيش الفرنسية المخبوزة بالدجاج والكريمة.</p>
+            </div>
+            <!-- 46 -->
+            <div class="menu-item">
+                <div class="menu-item-top">
+                    <span class="menu-item-title">Sandwich Thon Mayonnaise <span class="ar">سندويش تونة كلاسيك</span></span>
+                    <span class="menu-item-price">250 DZD</span>
+                </div>
+                <p class="menu-item-desc">Baguette fraîche, salade, thon et sauce. / خبز باجيت طازج، تونة، سلطة ومايونيز خفيف.</p>
+            </div>
+                <p class="menu-item-desc">Pommes de terre fraîches coupées main. / بطاطس مقلية ذهبية ومحضرة يدوياً بكل حب.</p>
+            </div>
         </div>
     </section>
 
